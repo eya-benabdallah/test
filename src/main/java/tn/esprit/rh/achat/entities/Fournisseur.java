@@ -2,18 +2,15 @@ package tn.esprit.rh.achat.entities;
 
 import java.io.Serializable;
 import java.util.Set;
-import javax.persistence.CascadeType;
+
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,48 +21,42 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Fournisseur implements Serializable {
-
+public class Operateur implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idFournisseur;
-	private String code;
-	private String libelle;
-	@Enumerated(EnumType.STRING)
-	private CategorieFournisseur  categorieFournisseur;
-	@OneToMany(mappedBy="fournisseur")
+	private Long idOperateur;
+	private String nom;
+	private String prenom;
+	
+	private String password;
+	@OneToMany
 	@JsonIgnore
 	private Set<Facture> factures;
-    @ManyToMany
-    @JsonIgnore
-    private Set<SecteurActivite> secteurActivites;
-    @OneToOne(cascade= CascadeType.ALL,fetch=FetchType.EAGER)
-    private DetailFournisseur detailFournisseur;
-	public Long getIdFournisseur() {
-		return idFournisseur;
+	public Long getIdOperateur() {
+		return idOperateur;
 	}
-	public void setIdFournisseur(Long idFournisseur) {
-		this.idFournisseur = idFournisseur;
+	public void setIdOperateur(Long idOperateur) {
+		this.idOperateur = idOperateur;
 	}
-	public String getCode() {
-		return code;
+	public String getNom() {
+		return nom;
 	}
-	public void setCode(String code) {
-		this.code = code;
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
-	public String getLibelle() {
-		return libelle;
+	public String getPrenom() {
+		return prenom;
 	}
-	public void setLibelle(String libelle) {
-		this.libelle = libelle;
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
 	}
-	public CategorieFournisseur getCategorieFournisseur() {
-		return categorieFournisseur;
+	public String getPassword() {
+		return password;
 	}
-	public void setCategorieFournisseur(CategorieFournisseur categorieFournisseur) {
-		this.categorieFournisseur = categorieFournisseur;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	public Set<Facture> getFactures() {
 		return factures;
@@ -73,22 +64,9 @@ public class Fournisseur implements Serializable {
 	public void setFactures(Set<Facture> factures) {
 		this.factures = factures;
 	}
-	public Set<SecteurActivite> getSecteurActivites() {
-		return secteurActivites;
-	}
-	public void setSecteurActivites(Set<SecteurActivite> secteurActivites) {
-		this.secteurActivites = secteurActivites;
-	}
-	public DetailFournisseur getDetailFournisseur() {
-		return detailFournisseur;
-	}
-	public void setDetailFournisseur(DetailFournisseur detailFournisseur) {
-		this.detailFournisseur = detailFournisseur;
-	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-    
-
+	
 	
 }
