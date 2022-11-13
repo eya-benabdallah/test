@@ -65,6 +65,11 @@ public class ProduitServiceImpl implements IProduitService {
 		produitRepository.save(produit);
 
 	}
+	public  ProduitServiceImpl(ProduitRepository repo)
+    {
+        // this keyword refers to current instance
+        this.produitRepository = repo;
+    }
 
 
 }
