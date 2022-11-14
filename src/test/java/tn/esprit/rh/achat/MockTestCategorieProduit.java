@@ -31,29 +31,29 @@ public class MockTestCategorieProduit {
 	@Test
 	public void retrieveAllproduitsTest() {
 		when(cRepository.findAll()).thenReturn(Stream.of(
-	            new CategorieProduit((long)1,null,null,null,null),
-	            new CategorieProduit((long)2,null,null,null,null), 
-				new CategorieProduit((long)3,null,null,null,null))
+	            new CategorieProduit((long)1,null,null,null),
+	            new CategorieProduit((long)2,null,null,null), 
+				new CategorieProduit((long)3,null,null,null))
 	             .collect(Collectors.toList()));
 		assertEquals(3,cService.retrieveAllCategorieProduits().size());
 		
 	}
 	@Test
 	public void addCategorieProduitTest() {
-		CategorieProduit cp =  new CategorieProduit((long)1,null,null,null,null);
+		CategorieProduit cp =  new CategorieProduit((long)1,null,null,null);
 		when(cRepository.save(cp)).thenReturn(cp);
 		assertEquals(cp, cService.addCategorieProduit(cp));
 	}
 	@Test
 	public void deleteCategorieproduitTest() {
-		CategorieProduit cp =  new CategorieProduit((long)1,null,null,null,null);
+		CategorieProduit cp =  new CategorieProduit((long)1,null,null,null);
 		cService.deleteCategorieProduit((long) 1);
 		verify(cRepository).deleteById((long) 1);
 
 	}
 	@Test
 	public void retreiveCategorieproduitTest() {
-		CategorieProduit cp =  new CategorieProduit((long)1,null,null,null,null);
+		CategorieProduit cp =  new CategorieProduit((long)1,null,null,null);
 		when(cRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(cp));
 		CategorieProduit cp1 = cService.retrieveCategorieProduit((long) 2);
 		Assertions.assertNotNull(cp1);
@@ -61,7 +61,7 @@ public class MockTestCategorieProduit {
 	}
 	@Test
 	public void updatetCategorieproduitTest() {
-		CategorieProduit cp =  new CategorieProduit((long)1,null,null,null,null);
+		CategorieProduit cp =  new CategorieProduit((long)1,null,null,null);
 		Mockito.when(cRepository.save(Mockito.any(CategorieProduit.class))).thenReturn(cp);
 		cp.setLibelleCategorie("eee");;
 		CategorieProduit exisitingcp= cService.updateCategorieProduit(cp) ;
