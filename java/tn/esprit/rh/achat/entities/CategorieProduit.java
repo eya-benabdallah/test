@@ -16,8 +16,6 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class CategorieProduit implements Serializable {
 
 	/**
@@ -32,13 +30,7 @@ public class CategorieProduit implements Serializable {
 	@OneToMany(mappedBy = "categorieProduit")
 	@JsonIgnore
 	private Set<Produit> produits;
-	public CategorieProduit() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	public CategorieProduit(long l, Object object, Object object2, Object object3) {
-		super();
-	}
+	
 	public Long getIdCategorieProduit() {
 		return idCategorieProduit;
 	}
@@ -66,6 +58,19 @@ public class CategorieProduit implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	public CategorieProduit(long l, Object object, Object object2, Object object3,Object object4) {
+		super();
+	}
+	public CategorieProduit(Long idCategorieProduit, String codeCategorie, String libelleCategorie,
+			Set<Produit> produits) {
+		this.idCategorieProduit = idCategorieProduit;
+		this.codeCategorie = codeCategorie;
+		this.libelleCategorie = libelleCategorie;
+		this.produits = produits;
+	}
+	public CategorieProduit() {
+	}
+	
 	
 	
 }
