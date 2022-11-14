@@ -1,17 +1,16 @@
 package tn.esprit.rh.achat.entities;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,110 +21,52 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Produit implements Serializable {
-
-	/**
-	 * 
-	 */
+public class Operateur implements Serializable{
 	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idProduit;
-	private String codeProduit;
-	private String libelleProduit;
-	private float prix;
-	@Temporal(TemporalType.DATE)
-	private Date dateCreation;
-	@Temporal(TemporalType.DATE)
-	private Date dateDerniereModification;
-	@ManyToOne
+	private Long idOperateur;
+	private String nom;
+	private String prenom;
+	
+	private String password;
+	@OneToMany
 	@JsonIgnore
-	private Stock stock;
-	@OneToMany(mappedBy = "produit")
-	@JsonIgnore
-	private Set<DetailFacture> detailFacture;
-	@ManyToOne
-	@JsonIgnore
-	private CategorieProduit categorieProduit;
-	public Long getIdProduit() {
-		return idProduit;
+	private Set<Facture> factures;
+	public Long getIdOperateur() {
+		return idOperateur;
 	}
-	public void setIdProduit(Long idProduit) {
-		this.idProduit = idProduit;
+	public void setIdOperateur(Long idOperateur) {
+		this.idOperateur = idOperateur;
 	}
-	public String getCodeProduit() {
-		return codeProduit;
+	public String getNom() {
+		return nom;
 	}
-	public void setCodeProduit(String codeProduit) {
-		this.codeProduit = codeProduit;
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
-	public String getLibelleProduit() {
-		return libelleProduit;
+	public String getPrenom() {
+		return prenom;
 	}
-	public void setLibelleProduit(String libelleProduit) {
-		this.libelleProduit = libelleProduit;
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
 	}
-	public float getPrix() {
-		return prix;
+	public String getPassword() {
+		return password;
 	}
-	public void setPrix(float prix) {
-		this.prix = prix;
+	public void setPassword(String password) {
+		this.password = password;
 	}
-	public Date getDateCreation() {
-		return dateCreation;
+	public Set<Facture> getFactures() {
+		return factures;
 	}
-	public void setDateCreation(Date dateCreation) {
-		this.dateCreation = dateCreation;
-	}
-	public Date getDateDerniereModification() {
-		return dateDerniereModification;
-	}
-	public void setDateDerniereModification(Date dateDerniereModification) {
-		this.dateDerniereModification = dateDerniereModification;
-	}
-	public Stock getStock() {
-		return stock;
-	}
-	public void setStock(Stock stock) {
-		this.stock = stock;
-	}
-	public Set<DetailFacture> getDetailFacture() {
-		return detailFacture;
-	}
-	public void setDetailFacture(Set<DetailFacture> detailFacture) {
-		this.detailFacture = detailFacture;
-	}
-	public CategorieProduit getCategorieProduit() {
-		return categorieProduit;
-	}
-	public void setCategorieProduit(CategorieProduit categorieProduit) {
-		this.categorieProduit = categorieProduit;
+	public void setFactures(Set<Facture> factures) {
+		this.factures = factures;
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	public Produit(Long idProduit, String codeProduit, String libelleProduit, float prix, Date dateCreation,
-			Date dateDerniereModification, Stock stock, Set<DetailFacture> detailFacture,
-			CategorieProduit categorieProduit) {
-		super();
-		this.idProduit = idProduit;
-		this.codeProduit = codeProduit;
-		this.libelleProduit = libelleProduit;
-		this.prix = prix;
-		this.dateCreation = dateCreation;
-		this.dateDerniereModification = dateDerniereModification;
-		this.stock = stock;
-		this.detailFacture = detailFacture;
-		this.categorieProduit = categorieProduit;
-	}
-	public Produit(long l, Object object, Object object2, Object object3, Object object4, Object object5, Object object6, Object object7, Object object8, Object object9) {
-		super();
-	}
-	public Produit() {
-		// TODO Auto-generated constructor stub
-	}
-
-
 	
-
+	
 }
